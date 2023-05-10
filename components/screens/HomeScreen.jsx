@@ -21,7 +21,7 @@ const HomeScreen = () => {
     const [settingsVisible, setSettingsVisible] = useState(false);
     const [sortVisible, setSortVisible] = useState(false);
     const [filter, setFilter] = useState({sort: '', query: ''})
-    const [searchQuery, setSearchQuery] = useState('')
+    //const [searchQuery, setSearchQuery] = useState('')
     const [savingSystem, setSavingSystem] = useState(1);
     const [service, setService] = useState(fileSystem)
 

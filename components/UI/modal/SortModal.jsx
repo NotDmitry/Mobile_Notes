@@ -1,15 +1,14 @@
-import {useState, useEffect} from "react";
-import {Modal, View, Text, StyleSheet, TouchableOpacity} from "react-native";
-import {CheckBox} from "react-native-elements";
+import {useState} from "react";
+import {Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {RadioButton} from "react-native-paper";
 
 const Settings = ({sortVisible, setSortVisible, filter, setFilter}) => {
     const [value, setValue] = useState('title');
 
-    const options = [
+/*    const options = [
         {title: 'Sort by Title', value: 'title'},
         {title: 'Sort by Body', value: 'body'}
-    ]
+    ]*/
 
     const SaveSettings = () => {
         setSortVisible(!sortVisible);
