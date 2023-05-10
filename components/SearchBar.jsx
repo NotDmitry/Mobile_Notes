@@ -2,17 +2,17 @@ import React from 'react';
 import {StyleSheet, TextInput, TouchableOpacity, View} from "react-native";
 import {AntDesign, MaterialIcons} from '@expo/vector-icons';
 
-const SearchBar = ({searchQuery, setSearchQuery}) => {
+const SearchBar = ({filter, setFilter}) => {
     return (
         <View style={styles.container}>
             <AntDesign name="search1" size={24} color='#fff' style={styles.icon}/>
             <TextInput
                 style={styles.input}
                 placeholder="Search..."
-                onChangeText={(newSearchQuery) => setSearchQuery(newSearchQuery)}
-                value={searchQuery}
+                onChangeText={(newSearchQuery) => setFilter({...filter, query: newSearchQuery})}
+                value={filter.query}
             />
-            <TouchableOpacity style={styles.clear} onPress={() => setSearchQuery('')}>
+            <TouchableOpacity style={styles.clear} onPress={() => setFilter({...filter, query: ''})}>
                 <MaterialIcons name="clear" size={24} color="#fff" style={styles.clear}/>
             </TouchableOpacity>
         </View>

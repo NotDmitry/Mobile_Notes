@@ -9,8 +9,10 @@ export const useSortedNotes = (notes, sort) => {
     }, [sort, notes])
 }
 
-export const useSearchedNotes = (notes, searchQuery) => {
+export const useSearchedNotes = (notes, sort, searchQuery) => {
+    const sortedNotes = useSortedNotes(notes, sort)
+
     return useMemo(() => {
         return notes.filter(note => note.title.toLowerCase().includes(searchQuery.toLowerCase()))
-    }, [searchQuery, notes])
+    }, [searchQuery, sortedNotes])
 }

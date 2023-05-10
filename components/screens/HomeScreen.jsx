@@ -10,26 +10,38 @@ import {useSearchedNotes} from "../../hooks/useNotes";
 import Settings from "../UI/modal/Settings";
 import * as fileSystem from "../../services/FileService";
 import * as dbSystem from '../../services/DbSQLite';
+import SortBtn from "../UI/button/SortBtn";
+import SortModal from "../UI/modal/SortModal";
 
 const HomeScreen = () => {
-    // States
     const navigation = useNavigation()
-    const [notes, setNotes] = useState([]);
 
+    // States
+    const [notes, setNotes] = useState([]);
     const [settingsVisible, setSettingsVisible] = useState(false);
+    const [sortVisible, setSortVisible] = useState(false);
+    const [filter, setFilter] = useState({sort: '', query: ''})
     const [searchQuery, setSearchQuery] = useState('')
     const [savingSystem, setSavingSystem] = useState(1);
     const [service, setService] = useState(fileSystem)
 
     // Custom hook
-    const searchedNotes = useSearchedNotes(notes, searchQuery)
-
+    const searchedNotes = useSearchedNotes(notes, filter.sort, filter.query)
 
     // Add settings button to the navigation header
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
                 <SettingsButton onPress={() => setSettingsVisible(true)}/>
+            ),
+        });
+    }, []);
+
+    // Add sort button to the navigation header
+    useEffect(() => {
+        navigation.setOptions({
+            headerLeft: () => (
+                <SortBtn onPress={() => setSortVisible(true)}/>
             ),
         });
     }, []);
@@ -66,8 +78,8 @@ const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <SearchBar
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
+                filter={filter}
+                setFilter={setFilter}
             />
             <View style={{backgroundColor: '#d0f5e7', flex: 1, paddingTop: 5}}>
                 <NotesList
@@ -88,6 +100,13 @@ const HomeScreen = () => {
                 setSettingsVisible={setSettingsVisible}
                 savingSystem={savingSystem}
                 setSavingSystem={setSavingSystem}
+            />
+
+            <SortModal
+                sortVisible={sortVisible}
+                setSortVisible={setSortVisible}
+                filter={filter}
+                setFilter={setFilter}
             />
 
             <StatusBar style="auto"/>

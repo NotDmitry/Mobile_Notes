@@ -1,18 +1,15 @@
-/*
 import React from 'react';
-import {StyleSheet} from "react-native";
-import {Picker} from "@react-native-picker/picker";
+import {StyleSheet, TouchableOpacity} from "react-native";
+import {FontAwesome} from '@expo/vector-icons';
 
-const SortBtn = ({sort, setSort}) => {
+const SortBtn = ({onPress}) => {
     return (
-        <Picker
-            selectedValue={sort}
-            onValueChange={(itemValue, itemIndex) =>
-                setSelectedLanguage(itemValue)
-            }>
-            <Picker.Item label="Sort by title" value="title" />
-            <Picker.Item label="Sort by body" value="body" />
-        </Picker>
+        <TouchableOpacity
+            style={styles.sortBtn}
+            onPress={onPress}
+        >
+            <FontAwesome name="sort" size={26} color="#fff" />
+        </TouchableOpacity>
     );
 };
 
@@ -26,4 +23,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SortBtn;*/
+export default SortBtn;

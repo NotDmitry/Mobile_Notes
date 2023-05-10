@@ -10,8 +10,7 @@ const NewNoteButton = ({style, onPress}) => {
             onPress={onPress}
             activeOpacity={0.5}
         >
-            <AntDesign name="plus" size={36} color='#fff'
-            />
+            <AntDesign name="plus" size={36} color='#fff'/>
         </TouchableOpacity>
     );
 };
